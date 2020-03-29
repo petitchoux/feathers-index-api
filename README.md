@@ -2,27 +2,36 @@
 
 This API is a complement to the Feathers mobile app. It is an index of different bird species and contains information on how to conserve bird populations. 
 
-## Routes
-Show all birds in the database:
-- http://localhost:8000/bird 
+## GET Routes
+Get all birds in the database:
+- /bird 
 
-Access a certain species of bird:
-- http://localhost:8000/bird/blue_jay
+Get one particular species of bird:
+- /bird/:id
 
-Show all resources:
-- http://localhost:8000/resource
+Get all resources:
+- /resource
 
-Show all threats:
-- http://localhost:8000/threat
+Get one particular resource only:
+- /resource/:id
 
-Show all tips:
-- http://localhost:8000/tip
+Get all threats:
+- /threat
+
+Get one particular threat only:
+- /threat/:id
+
+Get all tips:
+- /tip
+
+Get one particular tip only:
+- /tip/:id
 
 ## Models
 
-**Bird** (/bird/:name)
+**Bird** (/bird)
 
-- [x] speciesName
+- [x] id (primary key)
 - [x] name
 - [x] sageid
 - [x] habitat
@@ -35,15 +44,18 @@ Show all tips:
 
 **Resource** (/resource)
 
+- [x] id (primary key)
 - [x] name
 - [x] url
 
 **Threat** (/threat)
 
+- [x] id (primary key)
 - [x] name
 - [x] description
 
 **Tip** (/tip)
 
+- [x] id (primary key)
 - [x] name
 - [x] description
