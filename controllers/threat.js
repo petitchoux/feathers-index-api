@@ -11,11 +11,11 @@ router.get('/', async (req, res) => {
 });
 
 // Return data for particular threat
-router.get('/:name', async (req, res) => {
-  let threatName = req.params.name;
+router.get('/:id', async (req, res) => {
+  let threatName = req.params.id;
   let reqThreat = await ThreatModel.findOne({
     where: {
-      name: threatName
+      id: threatName
     }
   });
   res.json(
@@ -24,8 +24,8 @@ router.get('/:name', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const {name, description} = req.body;
-  const newThreat = await ThreatModel.create({ name, description });
+  const {id, name, description} = req.body;
+  const newThreat = await ThreatModel.create({ id, name, description });
   res.json(
     newThreat
   );

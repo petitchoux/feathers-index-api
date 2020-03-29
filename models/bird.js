@@ -5,8 +5,9 @@ module.exports = (sequelize, DataTypes) => {
   class Bird extends Model {}
 
   Bird.init({
-    speciesName: {
+    id: {
       type: DataTypes.STRING,
+      primaryKey: true,
       unique: true,
       allowNull: false
     },

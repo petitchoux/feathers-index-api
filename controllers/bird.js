@@ -10,11 +10,11 @@ router.get('/', async (req, res) => {
   res.json(birds)
 });
 
-router.get('/:name', async (req, res) => {
-  let birdName = req.params.name;
+router.get('/:id', async (req, res) => {
+  let birdName = req.params.id;
   let reqBird = await BirdModel.findOne({
     where: {
-      speciesName: birdName
+      id: birdName
     }
   });
   res.json(
@@ -23,9 +23,9 @@ router.get('/:name', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const {speciesName, name, sageid, habitat, plumage, nest, diet, lifespan, conservationStatus, funFacts} = req.body;
+  const {id, name, sageid, habitat, plumage, nest, diet, lifespan, conservationStatus, funFacts} = req.body;
   // console.log(name, habitat, diet, plumage);
-  const newBird = await BirdModel.create({ speciesName, name, sageid, habitat, plumage, nest, diet, lifespan, conservationStatus, funFacts });
+  const newBird = await BirdModel.create({ id, name, sageid, habitat, plumage, nest, diet, lifespan, conservationStatus, funFacts });
   res.json(
     newBird
   );
