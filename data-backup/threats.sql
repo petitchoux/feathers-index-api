@@ -25,9 +25,9 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.threats (
-    id integer NOT NULL,
+    id character varying(255) NOT NULL,
     name character varying(255) NOT NULL,
-    description text,
+    description text NOT NULL,
     "createdAt" timestamp with time zone NOT NULL,
     "updatedAt" timestamp with time zone NOT NULL
 );
@@ -36,52 +36,21 @@ CREATE TABLE public.threats (
 ALTER TABLE public.threats OWNER TO app_dev;
 
 --
--- Name: threats_id_seq; Type: SEQUENCE; Schema: public; Owner: app_dev
---
-
-CREATE SEQUENCE public.threats_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.threats_id_seq OWNER TO app_dev;
-
---
--- Name: threats_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: app_dev
---
-
-ALTER SEQUENCE public.threats_id_seq OWNED BY public.threats.id;
-
-
---
--- Name: threats id; Type: DEFAULT; Schema: public; Owner: app_dev
---
-
-ALTER TABLE ONLY public.threats ALTER COLUMN id SET DEFAULT nextval('public.threats_id_seq'::regclass);
-
-
---
 -- Data for Name: threats; Type: TABLE DATA; Schema: public; Owner: app_dev
 --
 
 COPY public.threats (id, name, description, "createdAt", "updatedAt") FROM stdin;
-1	Collision	Windows, cars, power lines, communication towers, wind turbines, and aircraft.	2020-03-28 18:02:57.017-04	2020-03-28 18:02:57.017-04
-2	Light Pollution	Night sky brightness affects the ability of birds to navigate at night and may draw them toward structures.	2020-03-28 18:03:11.88-04	2020-03-28 18:03:11.88-04
-3	Contaminants	Pesticides, herbicides, lead, heavy metals, oil, and marine trash.	2020-03-28 18:03:26.443-04	2020-03-28 18:03:26.443-04
-4	Fishing	Some birds end up as unintended by-catch from commercial fishing.	2020-03-28 18:03:40.279-04	2020-03-28 18:03:40.279-04
-5	Global Warming	Causes loss of habitat and food, disruption of migratory cycles.	2020-03-28 18:03:52.632-04	2020-03-28 18:03:52.632-04
+climate_change	Climate Change	Nearly a quarter of bird species studied globally have been negatively affected by climate change. Already, breeding and migratory cycles are changing. A recent study found that warmer UK springs are causing caterpillar numbers to spike earlier, meaning that by the time many bird chicks hatch, there are not enough caterpillars to go around.	2020-03-29 13:33:45.269-04	2020-03-29 13:33:45.269-04
+deforestation_and_logging	Deforestation and Logging	Since nearly two-thirds of species are found in forests, logging is a huge problem for birds. Many of these species cannot live outside of forests, and are unable to fly between remaining fragments. Logging is driven by a global demand for timber, paper and land on which to grow commodity crops and biofuels.	2020-03-29 13:34:10.301-04	2020-03-29 13:34:10.301-04
+hunting_and_trapping	Hunting and Trapping	The illegal hunting and capturing of birds can cause huge population plummets in a short space of time. One of the most harrowing examples is the Helmeted Hornbill Rhinoplax vigil. In 2015, this spectacular bird went from being listed as Near Threatened to Critically Endangered after hunters began targeting it for its highly sought-after solid “Red Ivory” casque.	2020-03-29 13:34:40.708-04	2020-03-29 13:34:40.708-04
+industrial_farming	Industrial Farming	More than a third of the earth’s land surface is dedicated to agriculture. The expansion and intensification of farming impacts a massive 74% of globally threatened birds. Not only does it destroy much-needed habitats, but some pesticides are poisonous to birds.	2020-03-29 13:35:54.069-04	2020-03-29 13:35:54.069-04
+contaminants	Contaminants	Pesticides, herbicides, lead, heavy metals, oil, and marine trash are harmful to birds and may cause deformities.	2020-03-29 13:36:19.292-04	2020-03-29 13:36:19.292-04
+global_warming	Global Warming	Causes loss of habitat and food, disruption of migratory cycles.	2020-03-29 13:36:43.376-04	2020-03-29 13:36:43.376-04
+invasive_species	Invasive Species	Over the last half-century, interlopers such as rats and mice have been responsible for more than 70% of bird extinctions. Birds on remote islands are especially susceptible to this threat, as they evolved with few natural predators.	2020-03-29 13:37:41.942-04	2020-03-29 13:37:41.942-04
+fishing	Fishing	Some birds end up as unintended by-catch from commercial fishing.	2020-03-29 13:38:01.603-04	2020-03-29 13:38:01.603-04
+collision	Collision	Birds may collide with windows, cars, power lines, communication towers, wind turbines, and aircrafts.	2020-03-29 13:38:24.995-04	2020-03-29 13:38:24.995-04
+light_pollution	Light Pollution	Night sky brightness affects the ability of birds to navigate at night and may draw them toward structures.	2020-03-29 13:38:51.822-04	2020-03-29 13:38:51.822-04
 \.
-
-
---
--- Name: threats_id_seq; Type: SEQUENCE SET; Schema: public; Owner: app_dev
---
-
-SELECT pg_catalog.setval('public.threats_id_seq', 5, true);
 
 
 --

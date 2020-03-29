@@ -11,11 +11,11 @@ router.get('/', async (req, res) => {
 });
 
 // Return data for particular resource
-router.get('/:name', async (req, res) => {
-  let resourceName = req.params.name;
+router.get('/:id', async (req, res) => {
+  let resourceName = req.params.id;
   let reqResource = await ResourceModel.findOne({
     where: {
-      name: resourceName
+      id: resourceName
     }
   });
   res.json(
@@ -24,8 +24,8 @@ router.get('/:name', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const {name, url} = req.body;
-  const newResource = await ResourceModel.create({ name, url });
+  const {id, name, url} = req.body;
+  const newResource = await ResourceModel.create({ id, name, url });
   res.json(
     newResource
   );

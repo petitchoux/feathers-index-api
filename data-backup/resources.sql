@@ -25,7 +25,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.resources (
-    id integer NOT NULL,
+    id character varying(255) NOT NULL,
     name character varying(255) NOT NULL,
     url text,
     "createdAt" timestamp with time zone NOT NULL,
@@ -36,52 +36,16 @@ CREATE TABLE public.resources (
 ALTER TABLE public.resources OWNER TO app_dev;
 
 --
--- Name: resources_id_seq; Type: SEQUENCE; Schema: public; Owner: app_dev
---
-
-CREATE SEQUENCE public.resources_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.resources_id_seq OWNER TO app_dev;
-
---
--- Name: resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: app_dev
---
-
-ALTER SEQUENCE public.resources_id_seq OWNED BY public.resources.id;
-
-
---
--- Name: resources id; Type: DEFAULT; Schema: public; Owner: app_dev
---
-
-ALTER TABLE ONLY public.resources ALTER COLUMN id SET DEFAULT nextval('public.resources_id_seq'::regclass);
-
-
---
 -- Data for Name: resources; Type: TABLE DATA; Schema: public; Owner: app_dev
 --
 
 COPY public.resources (id, name, url, "createdAt", "updatedAt") FROM stdin;
-1	American Bird Conservancy	https://abcbirds.org/	2020-03-28 17:58:50.812-04	2020-03-28 17:58:50.812-04
-2	Birdlife International	http://www.birdlife.org/	2020-03-28 17:59:07.306-04	2020-03-28 17:59:07.306-04
-3	U.S. Fish & Wildlife Service Migratory Bird Program	https://www.fws.gov/birds/index.php/	2020-03-28 17:59:20.941-04	2020-03-28 17:59:20.941-04
-4	Cornell Lab of Ornithology	https://www.birds.cornell.edu/home	2020-03-28 17:59:37.196-04	2020-03-28 17:59:37.196-04
-5	National Audubon Society	https://www.audubon.org/	2020-03-28 17:59:51.168-04	2020-03-28 17:59:51.168-04
+american_bird_conservancy	American Bird Conservancy	https://abcbirds.org/	2020-03-29 13:57:52.455-04	2020-03-29 13:57:52.455-04
+birdlife_international	Birdlife International	http://www.birdlife.org/	2020-03-29 13:58:27.581-04	2020-03-29 13:58:27.581-04
+us_fish_and_wildlife_service_migratory_bird_program	U.S. Fish & Wildlife Service Migratory Bird Program	https://www.fws.gov/birds/index.php	2020-03-29 13:59:09.161-04	2020-03-29 13:59:09.161-04
+cornell_lab_of_ornithology	Cornell Lab of Ornithology	https://www.birds.cornell.edu/home	2020-03-29 13:59:41.57-04	2020-03-29 13:59:41.57-04
+national_audubon_society	National Audubon Society	https://www.audubon.org/	2020-03-29 14:00:10.095-04	2020-03-29 14:00:10.095-04
 \.
-
-
---
--- Name: resources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: app_dev
---
-
-SELECT pg_catalog.setval('public.resources_id_seq', 5, true);
 
 
 --

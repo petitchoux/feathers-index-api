@@ -11,11 +11,11 @@ router.get('/', async (req, res) => {
 });
 
 // Return data for particular tip
-router.get('/:name', async (req, res) => {
-  let tipName = req.params.name;
+router.get('/:id', async (req, res) => {
+  let tipName = req.params.id;
   let reqTip = await TipModel.findOne({
     where: {
-      name: tipName
+      id: tipName
     }
   });
   res.json(
@@ -24,8 +24,8 @@ router.get('/:name', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const {name, description} = req.body;
-  const newTip = await TipModel.create({ name, description });
+  const {id, name, description} = req.body;
+  const newTip = await TipModel.create({ id, name, description });
   res.json(
     newTip
   );
