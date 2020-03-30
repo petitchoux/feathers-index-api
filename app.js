@@ -2,12 +2,18 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const models = require('./models');
 const aws = require('aws-sdk');
-const { Client } = require('pg');
+const Sequelize = require('sequelize');
+const http = require('http');
+let sequelize;
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
+// checks if env is Heroku, if so, sets sequelize to utilize the database hosted on heroku
+if (process.env.DATABASE_URL) {
+  // the application is executed on Heroku ... use the postgres database
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect:  'postgres',
+    protocol: 'postgres'
+  })
+};
 
 const port = process.env.PORT || 8000;
 
@@ -20,19 +26,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const controllers = require('./controllers');
 app.use(controllers);
 
-client.connect();
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
-
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // First, make sure the Database tables and models are in sync
 // then, start up the server and start listening.
@@ -44,5 +40,11 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 //       console.log(`Server is up and running on port: ${port}`)
 //     });
 //   });
+
+models.sequelize.sync().then(function() {
+  http.createServer(app).listen(port, function(){
+    console.log('Express server listening on port ' + port);
+  });
+});
 
 const S3_BUCKET = process.env.S3_BUCKET;

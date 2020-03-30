@@ -18,6 +18,7 @@
     "password": "DB_PASSWORD",
     "database": "APP_production",
     "host": "127.0.0.1",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "use_env_variable": "DATABASE_URL"
   }
 }
