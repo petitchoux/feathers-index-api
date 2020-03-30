@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const controllers = require('./controllers');
 app.use(controllers)
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello World!'));
 
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
